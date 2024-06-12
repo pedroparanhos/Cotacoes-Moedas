@@ -1,4 +1,4 @@
-import requests
+import requests 
 from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
@@ -32,13 +32,14 @@ class CotacaoApp:
         self.atualizar_cotacoes()
 
     def obter_cotacoes(self):
-        requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,CNY-BRL")
+        requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,BTC-BRL,ETH-BRL,CNY-BRL,EUR-BRL")
         requisicao_dic = requisicao.json()
 
-        cotacao_dolar = float(requisicao_dic["USDBRL"]["bid"])
-        cotacao_euro = float(requisicao_dic["EURBRL"]["bid"])
-        cotacao_btc = float(requisicao_dic["BTCBRL"]["bid"]) * 1000
-        cotacao_yuan = float(requisicao_dic["CNYBRL"]["bid"])
+        cotacao_dolar = round(float(requisicao_dic["USDBRL"]["bid"]), 2)
+        cotacao_btc = float(requisicao_dic["BTCBRL"]["bid"])
+        cotacao_eth = float(requisicao_dic["ETHBRL"]["bid"]) 
+        cotacao_euro = round(float(requisicao_dic["EURBRL"]["bid"]),2)
+        cotacao_yuan = round(float(requisicao_dic["CNYBRL"]["bid"]),2)
 
         data_atualizacao = datetime.now()
 
@@ -46,6 +47,7 @@ class CotacaoApp:
             {"Moeda": "USD", "Cotação": cotacao_dolar, "Última Atualização": data_atualizacao},
             {"Moeda": "EUR", "Cotação": cotacao_euro, "Última Atualização": data_atualizacao},
             {"Moeda": "BTC", "Cotação": cotacao_btc, "Última Atualização": data_atualizacao},
+            {"Moeda": "ETHER", "Cotação": cotacao_eth, "Última Atualização": data_atualizacao},
             {"Moeda": "CNY", "Cotação": cotacao_yuan, "Última Atualização": data_atualizacao},
         ]
 

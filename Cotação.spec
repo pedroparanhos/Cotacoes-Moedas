@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['Cotação.py'],
+    ['cotação.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -12,6 +12,7 @@ a = Analysis(
     runtime_hooks=[],
     excludes=[],
     noarchive=False,
+    optimize=0,
 )
 pyz = PYZ(a.pure)
 
@@ -21,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Cotação',
+    name='cotação',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
